@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qhit.dao.MoaVotrtrsultMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qhit.pojo.MoaVotrtrsult" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="activityvote_id" property="activityvoteId" jdbcType="INTEGER" />
+        <result column="ortionvote_id" property="ortionvoteId" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="votedate" property="votedate" jdbcType="TIME" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="DATE" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIME" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, activityvote_id, ortionvote_id, user_id, votedate, create_by, create_date, update_by, 
+        update_date, remarks, del_flag
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from moa_votrtrsult
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from moa_votrtrsult
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qhit.pojo.MoaVotrtrsult" >
+        insert into moa_votrtrsult (id, activityvote_id, ortionvote_id, 
+            user_id, votedate, create_by, 
+            create_date, update_by, update_date, 
+            remarks, del_flag)
+        values (#{id,jdbcType=INTEGER}, #{activityvoteId,jdbcType=INTEGER}, #{ortionvoteId,jdbcType=INTEGER}, 
+            #{userId,jdbcType=INTEGER}, #{votedate,jdbcType=TIME}, #{createBy,jdbcType=VARCHAR}, 
+            #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIME}, 
+            #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qhit.pojo.MoaVotrtrsult" >
+        insert into moa_votrtrsult
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="activityvoteId != null" >
+                activityvote_id,
+            </if>
+            <if test="ortionvoteId != null" >
+                ortionvote_id,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="votedate != null" >
+                votedate,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createDate != null" >
+                create_date,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
+            <if test="remarks != null" >
+                remarks,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="activityvoteId != null" >
+                #{activityvoteId,jdbcType=INTEGER},
+            </if>
+            <if test="ortionvoteId != null" >
+                #{ortionvoteId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="votedate != null" >
+                #{votedate,jdbcType=TIME},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=TIME},
+            </if>
+            <if test="remarks != null" >
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qhit.pojo.MoaVotrtrsult" >
+        update moa_votrtrsult
+        <set >
+            <if test="activityvoteId != null" >
+                activityvote_id = #{activityvoteId,jdbcType=INTEGER},
+            </if>
+            <if test="ortionvoteId != null" >
+                ortionvote_id = #{ortionvoteId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null" >
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="votedate != null" >
+                votedate = #{votedate,jdbcType=TIME},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                create_date = #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=TIME},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qhit.pojo.MoaVotrtrsult" >
+        update moa_votrtrsult
+        set activityvote_id = #{activityvoteId,jdbcType=INTEGER},
+            ortionvote_id = #{ortionvoteId,jdbcType=INTEGER},
+            user_id = #{userId,jdbcType=INTEGER},
+            votedate = #{votedate,jdbcType=TIME},
+            create_by = #{createBy,jdbcType=VARCHAR},
+            create_date = #{createDate,jdbcType=DATE},
+            update_by = #{updateBy,jdbcType=VARCHAR},
+            update_date = #{updateDate,jdbcType=TIME},
+            remarks = #{remarks,jdbcType=VARCHAR},
+            del_flag = #{delFlag,jdbcType=CHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

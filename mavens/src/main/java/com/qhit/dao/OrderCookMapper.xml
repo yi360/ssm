@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qhit.dao.OrderCookMapper">
+
+	<select id="selAllOrderCook" resultType="com.qhit.pojo.OrderCook">
+
+		select * from moa_orderset o,moa_cookbook c where o.COOKBOOK_ID=c.id
+
+
+	</select>
+
+	<select id="selOrderCookDate" resultType="com.qhit.pojo.OrderCook">
+
+		select * from moa_orderset o,moa_cookbook c where o.COOKBOOK_ID=c.id
+		
+
+		<if test="cdate!=null" >
+			and cdate = #{cdate,jdbcType=DATE}
+		</if>
+		<if test="dish!= null">
+			and dish = #{dish}
+		</if>
+	</select>
+
+	<delete id="deleteOrderCook" parameterType="java.lang.Integer">
+
+		delete from moa_orderset where id = #{id,jdbcType=INTEGER}
+
+
+	</delete>
+
+</mapper>
+

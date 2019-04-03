@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qhit.dao.MoaQuestionnaireresultMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qhit.pojo.MoaQuestionnaireresult" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="QUESTTONNATRE_ID" property="questtonnatreId" jdbcType="INTEGER" />
+        <result column="QTYPE" property="qtype" jdbcType="VARCHAR" />
+        <result column="QNUMBER" property="qnumber" jdbcType="INTEGER" />
+        <result column="QRESULT" property="qresult" jdbcType="VARCHAR" />
+        <result column="User_id" property="userId" jdbcType="VARCHAR" />
+        <result column="ANSWERDATE" property="answerdate" jdbcType="TIME" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIME" />
+        <result column="updete_by" property="updeteBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIME" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID, QUESTTONNATRE_ID, QTYPE, QNUMBER, QRESULT, User_id, ANSWERDATE, create_by, create_date, 
+        updete_by, update_date, remarks, del_flag
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from moa_questionnaireresult
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from moa_questionnaireresult
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qhit.pojo.MoaQuestionnaireresult" >
+        insert into moa_questionnaireresult (ID, QUESTTONNATRE_ID, QTYPE, 
+            QNUMBER, QRESULT, User_id, 
+            ANSWERDATE, create_by, create_date, 
+            updete_by, update_date, remarks, 
+            del_flag)
+        values (#{id,jdbcType=INTEGER}, #{questtonnatreId,jdbcType=INTEGER}, #{qtype,jdbcType=VARCHAR}, 
+            #{qnumber,jdbcType=INTEGER}, #{qresult,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+            #{answerdate,jdbcType=TIME}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIME}, 
+            #{updeteBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIME}, #{remarks,jdbcType=VARCHAR}, 
+            #{delFlag,jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qhit.pojo.MoaQuestionnaireresult" >
+        insert into moa_questionnaireresult
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="questtonnatreId != null" >
+                QUESTTONNATRE_ID,
+            </if>
+            <if test="qtype != null" >
+                QTYPE,
+            </if>
+            <if test="qnumber != null" >
+                QNUMBER,
+            </if>
+            <if test="qresult != null" >
+                QRESULT,
+            </if>
+            <if test="userId != null" >
+                User_id,
+            </if>
+            <if test="answerdate != null" >
+                ANSWERDATE,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createDate != null" >
+                create_date,
+            </if>
+            <if test="updeteBy != null" >
+                updete_by,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
+            <if test="remarks != null" >
+                remarks,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="questtonnatreId != null" >
+                #{questtonnatreId,jdbcType=INTEGER},
+            </if>
+            <if test="qtype != null" >
+                #{qtype,jdbcType=VARCHAR},
+            </if>
+            <if test="qnumber != null" >
+                #{qnumber,jdbcType=INTEGER},
+            </if>
+            <if test="qresult != null" >
+                #{qresult,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="answerdate != null" >
+                #{answerdate,jdbcType=TIME},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=TIME},
+            </if>
+            <if test="updeteBy != null" >
+                #{updeteBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=TIME},
+            </if>
+            <if test="remarks != null" >
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qhit.pojo.MoaQuestionnaireresult" >
+        update moa_questionnaireresult
+        <set >
+            <if test="questtonnatreId != null" >
+                QUESTTONNATRE_ID = #{questtonnatreId,jdbcType=INTEGER},
+            </if>
+            <if test="qtype != null" >
+                QTYPE = #{qtype,jdbcType=VARCHAR},
+            </if>
+            <if test="qnumber != null" >
+                QNUMBER = #{qnumber,jdbcType=INTEGER},
+            </if>
+            <if test="qresult != null" >
+                QRESULT = #{qresult,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null" >
+                User_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="answerdate != null" >
+                ANSWERDATE = #{answerdate,jdbcType=TIME},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                create_date = #{createDate,jdbcType=TIME},
+            </if>
+            <if test="updeteBy != null" >
+                updete_by = #{updeteBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=TIME},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qhit.pojo.MoaQuestionnaireresult" >
+        update moa_questionnaireresult
+        set QUESTTONNATRE_ID = #{questtonnatreId,jdbcType=INTEGER},
+            QTYPE = #{qtype,jdbcType=VARCHAR},
+            QNUMBER = #{qnumber,jdbcType=INTEGER},
+            QRESULT = #{qresult,jdbcType=VARCHAR},
+            User_id = #{userId,jdbcType=VARCHAR},
+            ANSWERDATE = #{answerdate,jdbcType=TIME},
+            create_by = #{createBy,jdbcType=VARCHAR},
+            create_date = #{createDate,jdbcType=TIME},
+            updete_by = #{updeteBy,jdbcType=VARCHAR},
+            update_date = #{updateDate,jdbcType=TIME},
+            remarks = #{remarks,jdbcType=VARCHAR},
+            del_flag = #{delFlag,jdbcType=CHAR}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

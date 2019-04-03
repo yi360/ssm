@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qhit.dao.MoaWeekMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qhit.pojo.MoaWeek" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="wnumber" property="wnumber" jdbcType="INTEGER" />
+        <result column="begindate" property="begindate" jdbcType="DATE" />
+        <result column="enddate" property="enddate" jdbcType="DATE" />
+        <result column="createdate" property="createdate" jdbcType="DATE" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="DATE" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="DATE"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, wnumber, begindate, enddate, createdate, create_by, create_date, update_by, update_date, 
+        remarks, del_flag
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from moa_week
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    
+   <!--  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from moa_week
+        where begindate = #{begindate,jdbcType=INTEGER}
+    </select>
+     -->
+   <select id="selectByDate" parameterType="com.qhit.pojo.MoaWeek" resultType="java.util.HashMap" >
+        select * from moa_week where 1=1
+         <if test="begindate!= null" >
+             and begindate = #{begindate,jdbcType=DATE} 
+         </if>
+          <if test="wnumber!= null" >
+             and wnumber = #{wnumber} 
+          </if>
+    </select> 
+    
+    <select id="selectAll"  resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from moa_week 
+      
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from moa_week
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qhit.pojo.MoaWeek" >
+        insert into moa_week (id, wnumber, begindate, 
+            enddate, createdate, create_by, 
+            create_date, update_by, update_date, 
+            remarks, del_flag)
+        values (#{id,jdbcType=INTEGER}, #{wnumber,jdbcType=INTEGER}, #{begindate,jdbcType=DATE}, 
+            #{enddate,jdbcType=DATE}, #{createdate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
+            #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
+            #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qhit.pojo.MoaWeek" >
+        insert into moa_week
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="wnumber != null" >
+                wnumber,
+            </if>
+            <if test="begindate != null" >
+                begindate,
+            </if>
+            <if test="enddate != null" >
+                enddate,
+            </if>
+            <if test="createdate != null" >
+                createdate,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createDate != null" >
+                create_date,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
+            <if test="remarks != null" >
+                remarks,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="wnumber != null" >
+                #{wnumber,jdbcType=INTEGER},
+            </if>
+            <if test="begindate != null" >
+                #{begindate,jdbcType=DATE},
+            </if>
+            <if test="enddate != null" >
+                #{enddate,jdbcType=DATE},
+            </if>
+            <if test="createdate != null" >
+                #{createdate,jdbcType=DATE},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=DATE},
+            </if>
+            <if test="remarks != null" >
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qhit.pojo.MoaWeek" >
+        update moa_week
+        <set >
+            <if test="wnumber != null" >
+                wnumber = #{wnumber,jdbcType=INTEGER},
+            </if>
+            <if test="begindate != null" >
+                begindate = #{begindate,jdbcType=DATE},
+            </if>
+            <if test="enddate != null" >
+                enddate = #{enddate,jdbcType=DATE},
+            </if>
+            <if test="createdate != null" >
+                createdate = #{createdate,jdbcType=DATE},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                create_date = #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=DATE},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qhit.pojo.MoaWeek" >
+        update moa_week
+        set wnumber = #{wnumber,jdbcType=INTEGER},
+            begindate = #{begindate,jdbcType=DATE},
+            enddate = #{enddate,jdbcType=DATE},
+            createdate = #{createdate,jdbcType=DATE},
+            create_by = #{createBy,jdbcType=VARCHAR},
+            create_date = #{createDate,jdbcType=DATE},
+            update_by = #{updateBy,jdbcType=VARCHAR},
+            update_date = #{updateDate,jdbcType=DATE},
+            remarks = #{remarks,jdbcType=VARCHAR},
+            del_flag = #{delFlag,jdbcType=CHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

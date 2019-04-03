@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qhit.dao.MoaOrdersetMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qhit.pojo.MoaOrderset" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="COOKBOOK_ID" property="cookbookId" jdbcType="INTEGER" />
+        <result column="dish" property="dish" jdbcType="VARCHAR" />
+        <result column="maxcount" property="maxcount" jdbcType="DECIMAL" />
+        <result column="nowcount" property="nowcount" jdbcType="DECIMAL" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="createdate" property="createDate" jdbcType="DATE" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="DATE" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    
+      
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, COOKBOOK_ID, dish, maxcount, nowcount, create_by, createdate, update_by, update_date, 
+        remarks, del_flag
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from moa_orderset
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    
+     <select id="selAllOrderset" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from moa_orderset
+       
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from moa_orderset
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qhit.pojo.MoaOrderset" >
+        insert into moa_orderset (id, COOKBOOK_ID, dish, 
+            maxcount, nowcount, create_by, 
+            createdate, update_by, update_date, 
+            remarks, del_flag)
+        values (#{id,jdbcType=INTEGER}, #{cookbookId,jdbcType=INTEGER}, #{dish,jdbcType=VARCHAR}, 
+            #{maxcount,jdbcType=DECIMAL}, #{nowcount,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, 
+            #{createDate,jdbcType=DATE}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
+            #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qhit.pojo.MoaOrderset" >
+        insert into moa_orderset
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="cookbookId != null" >
+                COOKBOOK_ID,
+            </if>
+            <if test="dish != null" >
+                dish,
+            </if>
+            <if test="maxcount != null" >
+                maxcount,
+            </if>
+            <if test="nowcount != null" >
+                nowcount,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createDate != null" >
+                createdate,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
+            <if test="remarks != null" >
+                remarks,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="cookbookId != null" >
+                #{cookbookId,jdbcType=INTEGER},
+            </if>
+            <if test="dish != null" >
+                #{dish,jdbcType=VARCHAR},
+            </if>
+            <if test="maxcount != null" >
+                #{maxcount,jdbcType=DECIMAL},
+            </if>
+            <if test="nowcount != null" >
+                #{nowcount,jdbcType=DECIMAL},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=DATE},
+            </if>
+            <if test="remarks != null" >
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qhit.pojo.MoaOrderset" >
+        update moa_orderset
+        <set >
+            <if test="cookbookId != null" >
+                COOKBOOK_ID = #{cookbookId,jdbcType=INTEGER},
+            </if>
+            <if test="dish != null" >
+                dish = #{dish,jdbcType=VARCHAR},
+            </if>
+            <if test="maxcount != null" >
+                maxcount = #{maxcount,jdbcType=DECIMAL},
+            </if>
+            <if test="nowcount != null" >
+                nowcount = #{nowcount,jdbcType=DECIMAL},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                createdate = #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=DATE},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qhit.pojo.MoaOrderset" >
+        update moa_orderset
+        set COOKBOOK_ID = #{cookbookId,jdbcType=INTEGER},
+            dish = #{dish,jdbcType=VARCHAR},
+            maxcount = #{maxcount,jdbcType=DECIMAL},
+            nowcount = #{nowcount,jdbcType=DECIMAL},
+            create_by = #{createBy,jdbcType=VARCHAR},
+            createdate = #{createDate,jdbcType=DATE},
+            update_by = #{updateBy,jdbcType=VARCHAR},
+            update_date = #{updateDate,jdbcType=DATE},
+            remarks = #{remarks,jdbcType=VARCHAR},
+            del_flag = #{delFlag,jdbcType=CHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
